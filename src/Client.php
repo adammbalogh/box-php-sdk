@@ -1,24 +1,24 @@
 <?php namespace AdammBalogh\Box;
 
-class Client
+use AdammBalogh\Box\Builder\RequestBuilder;
+use AdammBalogh\Box\Contract\ClientInterface;
+use AdammBalogh\Box\Resource\Resource;
+
+class Client implements ClientInterface
 {
-    /**
-     * @var string
-     */
     private $accessToken;
 
-    /**
-     * @param string $accessToken
-     */
     public function __construct($accessToken)
     {
         $this->accessToken = $accessToken;
     }
 
-    /**
-     * @return string
-     */
-    public function get_access_token()
+    public function create(Resource $resource)
+    {
+        new RequestBuilder($this, $resource);
+    }
+
+    public function getAccessToken()
     {
         return $this->accessToken;
     }
