@@ -7,6 +7,6 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 script:
-  - vendor/bin/phpcs -report-full --standard=PSR2 src tests
+  - vendor/bin/phpcs --report-full --standard=PSR2 src tests
   - vendor/bin/phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode
   - vendor/bin/phpunit
