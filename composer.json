@@ -1,0 +1,26 @@
+{
+    "name": "adammbalogh/box-sdk",
+    "description": "Unofficial Box.com Php Sdk",
+    "keywords": ["box", "box.com", "sdk"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Balogh",
+            "email": "baloghbh@gmail.com",
+            "homepage": "http://code-chronicle.blogspot.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~4.2.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "AdammBalogh\\Box\\": "src"
+        }
+    },
+    "minimum-stability": "stable"
+}
