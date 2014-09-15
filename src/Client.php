@@ -1,25 +1,38 @@
 <?php namespace AdammBalogh\Box;
 
-use AdammBalogh\Box\Builder\RequestBuilder;
-use AdammBalogh\Box\Contract\ClientInterface;
-use AdammBalogh\Box\Resource\Resource;
+use AdammBalogh\Box\Contract;
+use AdammBalogh\Box\Contract\Command;
+use GuzzleHttp\Client as GuzzleClient;
 
-class Client implements ClientInterface
+class Client implements Contract\Client
 {
-    private $accessToken;
+    /**
+     * @var GuzzleClient
+     */
+    private $guzzleClient;
 
-    public function __construct($accessToken)
+    /**
+     * @param GuzzleClient $guzzleClient
+     */
+    public function __construct(GuzzleClient $guzzleClient)
     {
-        $this->accessToken = $accessToken;
+        $this->guzzleClient = $guzzleClient;
     }
 
-    public function create(Resource $resource)
+    /**
+     * @param Command $command
+     * @return \GuzzleHttp\Message\ResponseInterface|void
+     */
+    public function request(Command $command)
     {
-        new RequestBuilder($this, $resource);
+        return $command->execute($this->guzzleClient);
     }
 
-    public function getAccessToken()
+    /**
+     * @return GuzzleClient
+     */
+    public function getGuzzleClient()
     {
-        return $this->accessToken;
+        return $this->guzzleClient;
     }
 }
