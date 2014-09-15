@@ -1,7 +1,7 @@
 <?php namespace AdammBalogh\Box\Command\Folder;
 
 use AdammBalogh\Box\Command\Command;
-use AdammBalogh\Box\GuzzleHttp\Message\Request;
+use AdammBalogh\Box\GuzzleHttp\Message\PostRequest;
 
 class CreateFolder extends Command
 {
@@ -13,7 +13,7 @@ class CreateFolder extends Command
                 'id' => $parentFolderId
             ]
         ];
-        $this->request = new Request('POST', 'folders');
+        $this->request = new PostRequest('folders');
         $this->request->setRawJsonBody($data);
     }
 }

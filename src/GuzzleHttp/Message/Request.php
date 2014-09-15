@@ -5,6 +5,8 @@ use GuzzleHttp\Stream\Stream;
 class Request extends \GuzzleHttp\Message\Request
 {
     /**
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     *
      * @param string $body
      * @return $this
      */

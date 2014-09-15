@@ -1,7 +1,7 @@
 <?php namespace AdammBalogh\Box\Command\Folder;
 
 use AdammBalogh\Box\Command\Command;
-use AdammBalogh\Box\GuzzleHttp\Message\Request;
+use AdammBalogh\Box\GuzzleHttp\Message\PostRequest;
 
 class CopyFolder extends Command
 {
@@ -12,7 +12,7 @@ class CopyFolder extends Command
                 'id' => $destinationFolderId
             ]
         ];
-        $this->request = new Request('POST', "folders/{$sourceFolderId}/copy");
+        $this->request = new PostRequest("folders/{$sourceFolderId}/copy");
         $this->request->setRawJsonBody($data);
     }
 }

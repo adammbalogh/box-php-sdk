@@ -2,7 +2,7 @@
 
 use GuzzleHttp\Client as GuzzleClient;
 
-class BoxGuzzleClient
+class BoxClient
 {
     private static $baseUri = 'https://api.box.com';
     private static $version = '2.0';
