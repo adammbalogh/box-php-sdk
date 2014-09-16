@@ -2,11 +2,16 @@
 
 use AdammBalogh\Box\Command\Command;
 use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
+use AdammBalogh\Box\Request\ExtendedRequest;
 
 class ListFolder extends Command
 {
-    public function __construct($folderId)
+    public function __construct($folderId, ExtendedRequest $extendedRequest = null)
     {
         $this->request = new GetRequest("folders/{$folderId}/items");
+
+        if (!is_null($extendedRequest)) {
+            $this->request->setQuery($extendedRequest->getQuery());
+        }
     }
 }
