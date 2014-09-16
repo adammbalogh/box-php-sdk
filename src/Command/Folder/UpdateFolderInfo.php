@@ -6,11 +6,15 @@ use AdammBalogh\Box\Request\ExtendedRequest;
 
 class UpdateFolderInfo extends Command
 {
+    /**
+     * @param int $folderId
+     * @param ExtendedRequest $extendedRequest
+     */
     public function __construct($folderId, ExtendedRequest $extendedRequest)
     {
         $this->request = new PutRequest("folders/{$folderId}");
 
         $this->request->addHeaders($extendedRequest->getHeaders());
-        $this->request->setRawJsonBody($extendedRequest->getBodyFields());
+        $this->request->setRawJsonBody($extendedRequest->getPostBodyFields());
     }
 }

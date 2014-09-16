@@ -5,6 +5,9 @@ use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
 
 class GetFolderInfo extends Command
 {
+    /**
+     * @param int $folderId
+     */
     public function __construct($folderId)
     {
         $this->request = new GetRequest("folders/{$folderId}");

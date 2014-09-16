@@ -1,6 +1,8 @@
 <?php namespace AdammBalogh\Box\Request;
 
+use GuzzleHttp\Post\PostFileInterface;
 use GuzzleHttp\Query;
+use GuzzleHttp\Post\PostBody;
 
 class ExtendedRequest
 {
@@ -15,13 +17,14 @@ class ExtendedRequest
     private $query;
 
     /**
-     * @var array
+     * @var PostBody
      */
-    private $bodyFields = [];
+    private $postBody;
 
     public function __construct()
     {
         $this->query = new Query();
+        $this->postBody = new PostBody();
     }
 
     /**
@@ -30,7 +33,7 @@ class ExtendedRequest
      *
      * @return $this
      */
-    public function addHeader($name, $value)
+    public function setHeader($name, $value)
     {
         $this->headers[$name] = $value;
         return $this;
@@ -50,20 +53,21 @@ class ExtendedRequest
      *
      * @return $this
      */
-    public function addQuery($name, $value)
+    public function addQueryField($name, $value)
     {
         $this->query->add($name, $value);
         return $this;
     }
 
     /**
-     * @param Query $query
+     * @param string $name
+     * @param mixed $value
      *
      * @return $this
      */
-    public function setQuery(Query $query)
+    public function setQueryField($name, $value)
     {
-        $this->query = $query;
+        $this->query->set($name, $value);
         return $this;
     }
 
@@ -77,31 +81,43 @@ class ExtendedRequest
 
     /**
      * @param string $name
-     * @param $value
+     * @param array|string $value
      *
      * @return $this
      */
-    public function addBodyField($name, $value)
+    public function setPostBodyField($name, $value)
     {
-        $this->bodyFields[$name] = $value;
+        $this->postBody->setField($name, $value);
         return $this;
     }
 
     /**
-     * @return array
+     * @param PostFileInterface $file
+     *
+     * @return $this
      */
-    public function getBodyFields()
+    public function addPostBodyFile(PostFileInterface $file)
     {
-        return $this->bodyFields;
+        $this->postBody->addFile($file);
+        return $this;
     }
 
     /**
-     * @param array $mergeWithData
+     * @param bool $asString
      *
-     * @return array
+     * @return array|string
      */
-    public function getMergedBodyFields(array $mergeWithData)
+    public function getPostBodyFields($asString = false)
     {
-        return array_merge($this->bodyFields, $mergeWithData);
+        return $this->postBody->getFields($asString);
+    }
+
+
+    /**
+     * @return PostBody
+     */
+    public function getPostBody()
+    {
+        return $this->postBody;
     }
 }

@@ -2,17 +2,20 @@
 
 use AdammBalogh\Box\Command\Command;
 use AdammBalogh\Box\GuzzleHttp\Message\PostRequest;
+use GuzzleHttp\Post\PostBody;
 
 class CopyFolder extends Command
 {
+    /**
+     * @param int $sourceFolderId
+     * @param int $destinationFolderId
+     */
     public function __construct($sourceFolderId, $destinationFolderId)
     {
-        $data = [
-            'parent' => [
-                'id' => $destinationFolderId
-            ]
-        ];
+        $postBody = new PostBody();
+        $postBody->setField('parent', ['id' => $destinationFolderId]);
+
         $this->request = new PostRequest("folders/{$sourceFolderId}/copy");
-        $this->request->setRawJsonBody($data);
+        $this->request->setRawJsonBody($postBody->getFields());
     }
 }

@@ -6,6 +6,10 @@ use AdammBalogh\Box\Request\ExtendedRequest;
 
 class DeleteFolder extends Command
 {
+    /**
+     * @param int $folderId
+     * @param ExtendedRequest $extendedRequest
+     */
     public function __construct($folderId, ExtendedRequest $extendedRequest = null)
     {
         $this->request = new DeleteRequest("folders/{$folderId}");

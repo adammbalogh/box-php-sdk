@@ -6,10 +6,14 @@ use AdammBalogh\Box\Request\ExtendedRequest;
 
 class CreateSharedFolderLink extends Command
 {
+    /**
+     * @param int $folderId
+     * @param ExtendedRequest $extendedRequest
+     */
     public function __construct($folderId, ExtendedRequest $extendedRequest)
     {
         $this->request = new PutRequest("folders/{$folderId}");
 
-        $this->request->setRawJsonBody($extendedRequest->getBodyFields());
+        $this->request->setRawJsonBody($extendedRequest->getPostBodyFields());
     }
 }

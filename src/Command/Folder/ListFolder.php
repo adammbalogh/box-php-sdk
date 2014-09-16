@@ -6,6 +6,10 @@ use AdammBalogh\Box\Request\ExtendedRequest;
 
 class ListFolder extends Command
 {
+    /**
+     * @param int $folderId
+     * @param ExtendedRequest $extendedRequest
+     */
     public function __construct($folderId, ExtendedRequest $extendedRequest = null)
     {
         $this->request = new GetRequest("folders/{$folderId}/items");
