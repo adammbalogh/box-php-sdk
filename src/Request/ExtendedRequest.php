@@ -103,13 +103,11 @@ class ExtendedRequest
     }
 
     /**
-     * @param bool $asString
-     *
-     * @return array|string
+     * @return array
      */
-    public function getPostBodyFields($asString = false)
+    public function getPostBodyFields()
     {
-        return $this->postBody->getFields($asString);
+        return $this->postBody->getFields();
     }
 
 
