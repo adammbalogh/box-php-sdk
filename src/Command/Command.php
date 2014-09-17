@@ -4,6 +4,9 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Message\Request;
 use \AdammBalogh\Box\Contract;
 
+/**
+ * @SuppressWarnings(PHPMD.NumberOfChildren)
+ */
 abstract class Command implements Contract\Command
 {
     /**
