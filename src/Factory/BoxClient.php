@@ -35,4 +35,12 @@ class BoxClient
             ]
         ]);
     }
+
+    /**
+     * @return string
+     */
+    public static function getVersion()
+    {
+        return self::$version;
+    }
 }
