@@ -7,7 +7,7 @@ use AdammBalogh\Box\Request\ExtendedRequest;
 class DeleteFolder extends Command
 {
     /**
-     * @param int $folderId
+     * @param string $folderId
      * @param ExtendedRequest $extendedRequest
      */
     public function __construct($folderId, ExtendedRequest $extendedRequest = null)

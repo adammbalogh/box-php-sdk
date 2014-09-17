@@ -8,6 +8,7 @@ class Request extends \GuzzleHttp\Message\Request
      * @SuppressWarnings(PHPMD.StaticAccess)
      *
      * @param string $body
+     *
      * @return $this
      */
     public function setRawBody($body)
@@ -17,12 +18,15 @@ class Request extends \GuzzleHttp\Message\Request
     }
 
     /**
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     *
      * @param array $data
+     *
      * @return $this
      */
     public function setRawJsonBody(array $data)
     {
-        $this->setRawBody(json_encode($data));
+        $this->setBody(Stream::factory(json_encode($data)), 'application/json');
         return $this;
     }
 }

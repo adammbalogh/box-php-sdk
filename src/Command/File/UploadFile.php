@@ -9,16 +9,16 @@ class UploadFile extends Command
 {
     /**
      * @param string $fileName
-     * @param int $parentFolderId
+     * @param string $parentFolderId
      * @param string $content
      */
     public function __construct($fileName, $parentFolderId, $content)
     {
-        $body = new PostBody();
-        $body->setField('parent_id', $parentFolderId);
-        $body->addFile(new PostFile('filename', $content, $fileName));
+        $postBody = new PostBody();
+        $postBody->setField('parent_id', $parentFolderId);
+        $postBody->addFile(new PostFile('filename', $content, $fileName));
 
         $this->request = new PostRequest('files/content');
-        $this->request->setBody($body);
+        $this->request->setBody($postBody);
     }
 }

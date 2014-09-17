@@ -7,8 +7,8 @@ use GuzzleHttp\Post\PostBody;
 class CopyFolder extends Command
 {
     /**
-     * @param int $sourceFolderId
-     * @param int $destinationFolderId
+     * @param string $sourceFolderId
+     * @param string $destinationFolderId
      */
     public function __construct($sourceFolderId, $destinationFolderId)
     {

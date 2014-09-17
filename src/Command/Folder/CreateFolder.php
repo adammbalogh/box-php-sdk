@@ -8,9 +8,9 @@ class CreateFolder extends Command
 {
     /**
      * @param string $folderName
-     * @param int $parentFolderId
+     * @param string $parentFolderId
      */
-    public function __construct($folderName, $parentFolderId = 0)
+    public function __construct($folderName, $parentFolderId)
     {
         $postBody = new PostBody();
         $postBody->setField('name', $folderName);

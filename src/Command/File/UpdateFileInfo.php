@@ -6,6 +6,10 @@ use AdammBalogh\Box\Request\ExtendedRequest;
 
 class UpdateFileInfo extends Command
 {
+    /**
+     * @param string $fileId
+     * @param ExtendedRequest $extendedRequest
+     */
     public function __construct($fileId, ExtendedRequest $extendedRequest)
     {
         $this->request = new PutRequest("files/{$fileId}");

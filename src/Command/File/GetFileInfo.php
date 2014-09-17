@@ -6,7 +6,7 @@ use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
 class GetFileInfo extends Command
 {
     /**
-     * @param int $fileId
+     * @param string $fileId
      */
     public function __construct($fileId)
     {

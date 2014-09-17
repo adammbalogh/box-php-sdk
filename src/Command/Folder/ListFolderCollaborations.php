@@ -6,7 +6,7 @@ use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
 class ListFolderCollaborations extends Command
 {
     /**
-     * @param int $folderId
+     * @param string $folderId
      */
     public function __construct($folderId)
     {
