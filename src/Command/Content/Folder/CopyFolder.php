@@ -16,6 +16,6 @@ class CopyFolder extends Command
         $postBody->setField('parent', ['id' => $destinationFolderId]);
 
         $this->request = new PostRequest("folders/{$sourceFolderId}/copy");
-        $this->request->setRawJsonBody($postBody->getFields());
+        $this->request->setRawJsonBody((array)$postBody->getFields());
     }
 }

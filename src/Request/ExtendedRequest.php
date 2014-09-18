@@ -107,7 +107,7 @@ class ExtendedRequest
      */
     public function getPostBodyFields()
     {
-        return $this->postBody->getFields();
+        return (array)$this->postBody->getFields();
     }
 
 

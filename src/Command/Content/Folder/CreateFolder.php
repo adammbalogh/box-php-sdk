@@ -17,6 +17,6 @@ class CreateFolder extends Command
         $postBody->setField('parent', ['id' => $parentFolderId]);
 
         $this->request = new PostRequest('folders');
-        $this->request->setRawJsonBody($postBody->getFields());
+        $this->request->setRawJsonBody((array)$postBody->getFields());
     }
 }

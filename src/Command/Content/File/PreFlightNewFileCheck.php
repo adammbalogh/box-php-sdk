@@ -19,7 +19,7 @@ class PreFlightNewFileCheck extends Command
         $postBody->setField('parent', ['id' => $parentFolderId]);
 
         $this->request = new OptionsRequest('files/content');
-        $this->request->setRawJsonBody($postBody->getFields());
+        $this->request->setRawJsonBody((array)$postBody->getFields());
 
     }
 }

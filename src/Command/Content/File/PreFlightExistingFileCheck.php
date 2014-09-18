@@ -16,6 +16,6 @@ class PreFlightExistingFileCheck extends Command
         $postBody->setField('size', $fileSize);
 
         $this->request = new OptionsRequest("files/{$fileId}/content");
-        $this->request->setRawJsonBody($postBody->getFields());
+        $this->request->setRawJsonBody((array)$postBody->getFields());
     }
 }

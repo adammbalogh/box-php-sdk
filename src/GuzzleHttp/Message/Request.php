@@ -26,7 +26,8 @@ class Request extends \GuzzleHttp\Message\Request
      */
     public function setRawJsonBody(array $data)
     {
-        $this->setBody(Stream::factory(json_encode($data)), 'application/json');
+        $this->addHeader('Content-Type', 'application/json');
+        $this->setBody(Stream::factory(json_encode($data)));
         return $this;
     }
 }
