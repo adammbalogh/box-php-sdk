@@ -1,12 +1,14 @@
 <?php namespace AdammBalogh\Box\Contract;
 
-interface Client
+interface CommandInterface
 {
     /**
-     * @param Command $command
+     * @param \GuzzleHttp\Client $client
+     *
      * @throw \LogicException
      * @throw \GuzzleHttp\Exception\RequestException
+     *
      * @return \GuzzleHttp\Message\ResponseInterface|void
      */
-    public function request(Command $command);
+    public function execute(\GuzzleHttp\Client $client);
 }

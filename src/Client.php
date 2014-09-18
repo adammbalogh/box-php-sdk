@@ -1,10 +1,11 @@
 <?php namespace AdammBalogh\Box;
 
 use AdammBalogh\Box\Contract;
-use AdammBalogh\Box\Contract\Command;
+use AdammBalogh\Box\Contract\CommandInterface;
+use AdammBalogh\Box\Contract\ClientInterface;
 use GuzzleHttp\Client as GuzzleClient;
 
-class Client implements Contract\Client
+class Client implements ClientInterface
 {
     /**
      * @var GuzzleClient
@@ -20,10 +21,11 @@ class Client implements Contract\Client
     }
 
     /**
-     * @param Command $command
+     * @param CommandInterface $command
+     *
      * @return \GuzzleHttp\Message\ResponseInterface|void
      */
-    public function request(Command $command)
+    public function request(CommandInterface $command)
     {
         return $command->execute($this->guzzleClient);
     }

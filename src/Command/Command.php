@@ -7,7 +7,7 @@ use \AdammBalogh\Box\Contract;
 /**
  * @SuppressWarnings(PHPMD.NumberOfChildren)
  */
-abstract class Command implements Contract\Command
+abstract class Command implements Contract\CommandInterface
 {
     /**
      * @var Request
@@ -16,6 +16,7 @@ abstract class Command implements Contract\Command
 
     /**
      * @param Client $client
+     *
      * @return \GuzzleHttp\Message\ResponseInterface|void
      */
     public function execute(Client $client)

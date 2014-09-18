@@ -1,7 +1,6 @@
 <?php namespace AdammBalogh\Box\Factory\Content;
 
 use GuzzleHttp\Client as GuzzleClient;
-use AdammBalogh\Box;
 
 class Client
 {
@@ -11,6 +10,7 @@ class Client
 
     /**
      * @param string $accessToken
+     *
      * @return GuzzleClient
      */
     public static function getGuzzleClient($accessToken)
@@ -25,6 +25,7 @@ class Client
 
     /**
      * @param string $accessToken
+     *
      * @return GuzzleClient
      */
     public static function getGuzzleUploadClient($accessToken)
