@@ -1,4 +1,4 @@
-<?php namespace AdammBalogh\Box\Command\Folder;
+<?php namespace AdammBalogh\Box\Command\Content\Folder;
 
 use AdammBalogh\Box\Command\Command;
 use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;

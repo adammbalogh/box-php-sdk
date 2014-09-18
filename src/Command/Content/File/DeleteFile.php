@@ -1,10 +1,10 @@
-<?php namespace AdammBalogh\Box\Command\File;
+<?php namespace AdammBalogh\Box\Command\Content\File;
 
 use AdammBalogh\Box\Command\Command;
-use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
+use AdammBalogh\Box\GuzzleHttp\Message\DeleteRequest;
 use AdammBalogh\Box\Request\ExtendedRequest;
 
-class DownloadFile extends Command
+class DeleteFile extends Command
 {
     /**
      * @param string $fileId
@@ -12,10 +12,10 @@ class DownloadFile extends Command
      */
     public function __construct($fileId, ExtendedRequest $extendedRequest = null)
     {
-        $this->request = new GetRequest("files/{$fileId}/content");
+        $this->request = new DeleteRequest("files/{$fileId}");
 
         if (!is_null($extendedRequest)) {
-            $this->request->setQuery($extendedRequest->getQuery());
+            $this->request->addHeaders($extendedRequest->getHeaders());
         }
     }
 }

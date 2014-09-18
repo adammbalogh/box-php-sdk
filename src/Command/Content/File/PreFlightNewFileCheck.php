@@ -1,4 +1,4 @@
-<?php namespace AdammBalogh\Box\Command\File;
+<?php namespace AdammBalogh\Box\Command\Content\File;
 
 use AdammBalogh\Box\Command\Command;
 use AdammBalogh\Box\GuzzleHttp\Message\OptionsRequest;

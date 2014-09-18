@@ -1,8 +1,9 @@
-<?php namespace AdammBalogh\Box\Factory;
+<?php namespace AdammBalogh\Box\Factory\Content;
 
 use GuzzleHttp\Client as GuzzleClient;
+use AdammBalogh\Box;
 
-class BoxClient
+class Client
 {
     private static $baseUri = 'https://api.box.com';
     private static $uploadUri = 'https://upload.box.com/api';
@@ -12,7 +13,7 @@ class BoxClient
      * @param string $accessToken
      * @return GuzzleClient
      */
-    public static function getBoxGuzzleClient($accessToken)
+    public static function getGuzzleClient($accessToken)
     {
         return new GuzzleClient([
             'base_url' => [self::$baseUri . '/{version}/', ['version' => self::$version]],
@@ -26,7 +27,7 @@ class BoxClient
      * @param string $accessToken
      * @return GuzzleClient
      */
-    public static function getBoxGuzzleUploadClient($accessToken)
+    public static function getGuzzleUploadClient($accessToken)
     {
         return new GuzzleClient([
             'base_url' => [self::$uploadUri . '/{version}/', ['version' => self::$version]],
