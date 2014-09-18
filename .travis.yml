@@ -10,4 +10,4 @@ script:
   - vendor/bin/phpcs --report-full --standard=PSR2 src tests
   - vendor/bin/phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode
   - vendor/bin/phpunit
-  - curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@composer.lock
+  - 'curl -H "Accept: text/plain" https://security.sensiolabs.org/check_lock -F lock=@composer.lock'
