@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\File;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\DeleteRequest;
 use AdammBalogh\Box\Request\ExtendedRequest;
 
-class DeleteFile extends Command
+class DeleteFile extends AbstractCommand
 {
     /**
      * @param string $fileId

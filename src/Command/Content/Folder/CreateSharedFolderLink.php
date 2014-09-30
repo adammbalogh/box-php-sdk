@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\Folder;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\PutRequest;
 use AdammBalogh\Box\Request\ExtendedRequest;
 
-class CreateSharedFolderLink extends Command
+class CreateSharedFolderLink extends AbstractCommand
 {
     /**
      * @param string $folderId

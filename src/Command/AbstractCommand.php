@@ -7,7 +7,7 @@ use \AdammBalogh\Box\Contract;
 /**
  * @SuppressWarnings(PHPMD.NumberOfChildren)
  */
-abstract class Command implements Contract\CommandInterface
+abstract class AbstractCommand implements Contract\CommandInterface
 {
     /**
      * @var Request

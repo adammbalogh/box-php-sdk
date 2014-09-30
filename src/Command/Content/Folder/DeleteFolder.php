@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\Folder;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\DeleteRequest;
 use AdammBalogh\Box\Request\ExtendedRequest;
 
-class DeleteFolder extends Command
+class DeleteFolder extends AbstractCommand
 {
     /**
      * @param string $folderId

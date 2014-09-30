@@ -1,11 +1,11 @@
 <?php namespace AdammBalogh\Box\Command\Content\File;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\PostRequest;
 use GuzzleHttp\Post\PostBody;
 use GuzzleHttp\Post\PostFile;
 
-class UploadFile extends Command
+class UploadFile extends AbstractCommand
 {
     /**
      * @param string $fileName

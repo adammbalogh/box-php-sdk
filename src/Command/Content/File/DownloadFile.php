@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\File;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
 use AdammBalogh\Box\Request\ExtendedRequest;
 
-class DownloadFile extends Command
+class DownloadFile extends AbstractCommand
 {
     /**
      * @param string $fileId

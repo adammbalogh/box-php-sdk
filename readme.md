@@ -2,7 +2,6 @@
 
 [![Build Status](https://img.shields.io/travis/adammbalogh/box-php-sdk/master.svg?style=flat)](https://travis-ci.org/adammbalogh/box-php-sdk)
 [![Quality Score](https://img.shields.io/scrutinizer/g/adammbalogh/box-php-sdk.svg?style=flat)](https://scrutinizer-ci.com/g/adammbalogh/box-php-sdk)
-[![Dependency Status](https://www.versioneye.com/user/projects/541afcf63a1a2c8009000002/badge.svg?style=flat)](https://www.versioneye.com/user/projects/541afcf63a1a2c8009000002)
 [![Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/5cde6ee7-5002-43b5-beb7-df12fddc8c15/small.png)](https://insight.sensiolabs.com/projects/5cde6ee7-5002-43b5-beb7-df12fddc8c15)

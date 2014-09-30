@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\Folder;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
 use AdammBalogh\Box\Request\ExtendedRequest;
 
-class ListFolder extends Command
+class ListFolder extends AbstractCommand
 {
     /**
      * @param string $folderId

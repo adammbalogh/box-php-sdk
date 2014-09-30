@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\Folder;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\PostRequest;
 use GuzzleHttp\Post\PostBody;
 
-class CreateFolder extends Command
+class CreateFolder extends AbstractCommand
 {
     /**
      * @param string $folderName

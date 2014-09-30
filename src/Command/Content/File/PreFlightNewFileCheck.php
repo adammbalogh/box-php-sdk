@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\File;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\OptionsRequest;
 use GuzzleHttp\Post\PostBody;
 
-class PreFlightNewFileCheck extends Command
+class PreFlightNewFileCheck extends AbstractCommand
 {
     /**
      * @param string $fileName

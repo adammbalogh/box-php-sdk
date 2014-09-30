@@ -1,9 +1,9 @@
 <?php namespace AdammBalogh\Box\Command\Content\File;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
 
-class GetFileInfo extends Command
+class GetFileInfo extends AbstractCommand
 {
     /**
      * @param string $fileId

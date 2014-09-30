@@ -1,10 +1,10 @@
 <?php namespace AdammBalogh\Box\Command\Content\Folder;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\PostRequest;
 use GuzzleHttp\Post\PostBody;
 
-class CopyFolder extends Command
+class CopyFolder extends AbstractCommand
 {
     /**
      * @param string $sourceFolderId

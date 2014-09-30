@@ -1,9 +1,9 @@
 <?php namespace AdammBalogh\Box\Command\Content\Folder;
 
-use AdammBalogh\Box\Command\Command;
+use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\GetRequest;
 
-class ListFolderCollaborations extends Command
+class ListFolderCollaborations extends AbstractCommand
 {
     /**
      * @param string $folderId
