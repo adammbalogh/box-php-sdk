@@ -13,11 +13,14 @@
 
 This is an unofficial [Box](https://www.box.com/home) Php Sdk.
 
-# Skills
+# Toc
 
-* Authorization (OAuth 2.0)
-* Content Api
-* View Api
+* [Installation](https://github.com/adammbalogh/box-php-sdk#installation)
+* [Authorization](https://github.com/adammbalogh/box-php-sdk#authorization)
+* [Request](https://github.com/adammbalogh/box-php-sdk#request)
+* [Response](https://github.com/adammbalogh/box-php-sdk#response)
+* [Content Api](https://github.com/adammbalogh/box-php-sdk#content-api)
+* [View Api](https://github.com/adammbalogh/box-php-sdk#view-api)
 
 # Support
 
@@ -159,12 +162,397 @@ if ($response instanceof SuccessResponse) {
 } elseif ($response instanceof ErrorResponse) {
     # same as above
 }
-
 ```
 
 # Content Api
 
-*wip*
+## Create Client
+
+```php
+<?php
+use AdammBalogh\Box\ContentClient;
+use AdammBalogh\Box\Client\Content\ApiClient;
+use AdammBalogh\Box\Client\Content\UploadClient;
+
+$accessToken = 'sfKGJ7FcN0s0PxdD3xszjlKWvHBhF4WL';
+
+$contentClient = new ContentClient(new ApiClient($accessToken), new UploadClient($accessToken));
+```
+
+## Commands
+
+### User Commands
+
+#### Get Current User Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\User\GetCurrentUser();
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+### Folder Commands
+
+#### Copy Folder Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Folder\CopyFolder('sourceFolderId', 'destinationFolderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Create Folder Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Folder\CreateFolder('folderName', 'parentFolderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Create Shared Folder Link Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+use AdammBalogh\Box\Request\ExtendedRequest;
+
+$er = new ExtendedRequest();
+$er->setPostBodyField('shared_link', ['access'=>'open']);
+
+$command = new Content\Folder\CreateSharedFolderLink('folderId', $er);
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Delete Folder Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Folder\DeleteFolder('folderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Get Folder Info Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Folder\GetFolderInfo('folderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### List Folder Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Folder\ListFolder('folderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### List Folder Collaborations Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Folder\ListFolderCollaborations('folderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Update Folder Info Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+use AdammBalogh\Box\Request\ExtendedRequest;
+
+$er = new ExtendedRequest();
+$er->setPostBodyField('name', 'file-name');
+
+$command = new Content\Folder\UpdateFolderInfo('folderId', $er);
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+### File Commands
+
+#### Copy File Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\CopyFile('fileId', 'folderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Create Shared File Link Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+use AdammBalogh\Box\Request\ExtendedRequest;
+
+$er = new ExtendedRequest();
+$er->setPostBodyField('shared_link', ['access'=>'open']);
+
+$command = new Content\File\CreateSharedFileLink('fileId', $er);
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Delete File Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\DeleteFile('fileId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Download File Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\DownloadFile('fileId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Get File Info Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\GetFileInfo('fileId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Pre Flight Existing File Check Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\PreFlightExistingFileCheck('fileId', fileSize);
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Pre Flight New File Check Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\PreFlightNewFileCheck('fileName', fileSize, 'parentFolderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Update File Info Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+use AdammBalogh\Box\Request\ExtendedRequest;
+
+$er = new ExtendedRequest();
+$er->setPostBodyField('name', 'file-name');
+$er->setPostBodyField('description', 'file-description');
+
+$command = new Content\File\UpdateFileInfo('fileId', $er);
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Upload File Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\UploadFile('fileName', 'parentFolderId', 'content');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
 
 # View Api
 
