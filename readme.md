@@ -174,7 +174,7 @@ use AdammBalogh\Box\ContentClient;
 use AdammBalogh\Box\Client\Content\ApiClient;
 use AdammBalogh\Box\Client\Content\UploadClient;
 
-$accessToken = 'sfKGJ7FcN0s0PxdD3xszjlKWvHBhF4WL';
+$accessToken = 'accesstoken';
 
 $contentClient = new ContentClient(new ApiClient($accessToken), new UploadClient($accessToken));
 ```
