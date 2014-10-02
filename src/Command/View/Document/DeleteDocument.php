@@ -1,4 +1,4 @@
-<?php namespace AdammBalogh\Box\Command\Content\File;
+<?php namespace AdammBalogh\Box\Command\View\Document;
 
 use AdammBalogh\Box\Command\AbstractCommand;
 use AdammBalogh\Box\GuzzleHttp\Message\DeleteRequest;
