@@ -11,7 +11,7 @@
 
 # Description
 
-This is an unofficial [Box](https://www.box.com/home) php sdk.
+This is an unofficial [Box](https://www.box.com/home) Php Sdk.
 
 # Skills
 
@@ -38,17 +38,14 @@ Install it through composer.
 **tip:** you should browse the [`adammbalogh/box-sdk`](https://packagist.org/packages/adammbalogh/box-sdk)
 page to choose a stable version to use, avoid the `@stable` meta constraint.
 
-# Skills
-
-## Authorization
+# Authorization
 
 Your goal is to obtain a valid access token.
 
-### Authorize
+## Authorize
 
 ```php
 <?php
-
 use AdammBalogh\Box\Client\OAuthClient;
 use AdammBalogh\KeyValueStore\KeyValueStore;
 use AdammBalogh\KeyValueStore\Adapter\NullAdapter;
@@ -85,23 +82,286 @@ The ```$keyValueStore``` object is responsible for obtain/save the access token.
 
 If you want to save the access (and the refresh) token persistently, you should check the other adapters of the [KeyValueStore](https://github.com/adammbalogh/key-value-store) package, [here](https://github.com/adammbalogh/key-value-store#adapters).
 
-### Revoke tokens
+## Revoke tokens
 
 ```php
 $oAuthClient->revokeTokens();
 ```
 
-### Get access token Ttl
+## Get access token Ttl
 
 ```php
 /* @var int $ttl Access token's time to live */
 $ttl = $oAuthClient->getAccessTokenTtl();
 ```
 
-## Content Api
+# Request
+
+## Extended Request
+
+Here you can see an example request to the View Api. It calls the UrlDocumentUpload command.
+
+Many of the commands are able to include an Extended Request object. With an Extended Request object you can
+inject your extra Headers, Url Parameters or Request Body Attributes.
+
+```php
+<?php
+use AdammBalogh\Box\ViewClient;
+use AdammBalogh\Box\Client\View\ApiClient;
+use AdammBalogh\Box\Client\View\UploadClient;
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Request\ExtendedRequest;
+
+$apiKey = 'apikey';
+$viewClient = new ViewClient(new ApiClient($apiKey), new UploadClient($apiKey));
+
+$er = new ExtendedRequest();
+$er->setHeader('Content-Type', 'application/json');
+$er->addQueryField('fields', 'status');
+$er->setPostBodyField('name', 'file-name');
+
+$command = new View\Document\UrlDocumentUpload('https://cloud.box.com/shared/static/zzxlzc38hq7u1u5jdteu.pdf', $er);
+```
+
+# Response
+
+## Handle Response
+
+You can get 5 important response values:
+* $response->getStatusCode(); *# e.g. '201'*
+* $response->getReasonPhrase(); *# e.g. 'Created'*
+* $response->getHeaders(); *# array of response headers ['header name' => 'header value']*
+* $response->json(); *# parse json response as an array*
+* (string)$response->getBody();
+
+```php
+<?php
+use AdammBalogh\Box\ViewClient;
+use AdammBalogh\Box\Client\View\ApiClient;
+use AdammBalogh\Box\Client\View\UploadClient;
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$apiKey = 'apikey';
+$viewClient = new ViewClient(new ApiClient($apiKey), new UploadClient($apiKey));
+
+$command = new View\Document\ListDocument();
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+    $response->getStatusCode();
+    $response->getReasonPhrase();
+    $response->getHeaders();
+    $response->json();
+    (string)$response->getBody();
+} elseif ($response instanceof ErrorResponse) {
+    # same as above
+}
+
+```
+
+# Content Api
 
 *wip*
 
-## View Api
+# View Api
 
-*wip*
+## Create Client
+
+```php
+<?php
+use AdammBalogh\Box\ViewClient;
+use AdammBalogh\Box\Client\View\ApiClient;
+use AdammBalogh\Box\Client\View\UploadClient;
+
+$apiKey = 'apikey';
+
+$viewClient = new ViewClient(new ApiClient($apiKey), new UploadClient($apiKey));
+```
+
+## Commands
+
+### Document Commands
+
+#### Delete Document Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\DeleteDocument('documentId');
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Get Document Content Command ☢
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\GetDocumentContent('documentId', 'zip'); # extension can be '', 'zip' or 'pdf'
+$response = $viewClient->request($command);
+
+echo (string)$response->getBody(); # the content of the document
+```
+
+#### Get Document Info Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\GetDocumentInfo('documentId');
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Get Document Thumbnail Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\GetDocumentThumbnail('documentId');
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### List Document Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\ListDocument();
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Multipart Document Upload Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\MultipartDocumentUpload('content', 'filename.pdf');
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Update Document Info Command
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\UpdateDocumentInfo('documentId', 'newFileName');
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Url Document Upload Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Document\UrlDocumentUpload('urlOfTheDocument');
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+### Session Commands
+
+#### Create Document Session Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\View;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new View\Session\CreateDocumentSession('documentId');
+$response = ResponseFactory::getResponse($viewClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
