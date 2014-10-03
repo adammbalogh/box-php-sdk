@@ -1,4 +1,5 @@
 # Box Sdk
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/adammbalogh/box-php-sdk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![Author](http://img.shields.io/badge/author-@adammbalogh-blue.svg?style=flat)](https://twitter.com/adammbalogh)
 [![Build Status](https://img.shields.io/travis/adammbalogh/box-php-sdk/master.svg?style=flat)](https://travis-ci.org/adammbalogh/box-php-sdk)
