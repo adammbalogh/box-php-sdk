@@ -807,6 +807,8 @@ use AdammBalogh\Box\Wrapper\Response\FolderEntry;
 use AdammBalogh\Box\Wrapper\Response\FileEntry;
 
 
+$wrapper = new SearchPath($contentClient);
+
 $entry = $wrapper->getEntry('/my-dir/example_dir');
 
 if ($entry instanceof FolderEntry) {
