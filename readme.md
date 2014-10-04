@@ -555,6 +555,29 @@ if ($response instanceof SuccessResponse) {
 }
 ```
 
+### Search Commands
+
+#### Search Content Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Search\SearchContent('query');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
 # View Api
 
 ## Create Client
