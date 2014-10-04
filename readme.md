@@ -18,10 +18,26 @@ This is an unofficial [Box](https://www.box.com/home) Php Sdk.
 
 * [Installation](https://github.com/adammbalogh/box-php-sdk#installation)
 * [Authorization](https://github.com/adammbalogh/box-php-sdk#authorization)
+ * [Authorize](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#authorize)
+ * [Revoke tokens](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#revoke-tokens)
+ * [Get access token Ttl](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#get-access-token-ttl)
 * [Request](https://github.com/adammbalogh/box-php-sdk#request)
+ * [Extended Request](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#extended-request)
 * [Response](https://github.com/adammbalogh/box-php-sdk#response)
+ * [Handle Response](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#handle-response)
 * [Content Api](https://github.com/adammbalogh/box-php-sdk#content-api)
+ * [Create Client](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#create-client)
+ * [Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#commands)
+    * [User Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#user-commands)
+    * [Folder Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#folder-commands)
+    * [File Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#file-commands)
+    * [Search Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#search-commands)
 * [View Api](https://github.com/adammbalogh/box-php-sdk#view-api)
+ * [Create Client](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#create-client-1)
+ * [Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#commands-1)
+    * [Document Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#document-commands)
+    * [Session Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#session-commands)
+* [Wrappers](https://github.com/adammbalogh/box-php-sdk#wrappers)
 
 # Support
 
@@ -775,5 +791,28 @@ if ($response instanceof SuccessResponse) {
 	# ...
 } elseif ($response instanceof ErrorResponse) {
 	# ...
+}
+```
+
+# Wrappers
+
+## Search Path Wrapper
+
+It wraps the [Search Content Command](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#search-content-command) to able to get an Entry object from a path string (like **/root/dir_1/dir_2**, or **/pictures/img.png**)
+
+```php
+<?php
+use AdammBalogh\Box\Wrapper\SearchPath;
+use AdammBalogh\Box\Wrapper\Response\FolderEntry;
+use AdammBalogh\Box\Wrapper\Response\FileEntry;
+
+
+$entry = $wrapper->getEntry('/my-dir/example_dir');
+
+if ($entry instanceof FolderEntry) {
+    $entry->identity; # folderId
+    # here you can create your own command, because now you have the folder id!
+} elseif ($entry FileEntry) {
+    $entry->identity;
 }
 ```
