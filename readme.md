@@ -18,25 +18,25 @@ This is an unofficial [Box](https://www.box.com/home) Php Sdk.
 
 * [Installation](https://github.com/adammbalogh/box-php-sdk#installation)
 * [Authorization](https://github.com/adammbalogh/box-php-sdk#authorization)
- * [Authorize](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#authorize)
- * [Revoke tokens](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#revoke-tokens)
- * [Get access token Ttl](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#get-access-token-ttl)
+ * [Authorize](https://github.com/adammbalogh/box-php-sdk#authorize)
+ * [Revoke tokens](https://github.com/adammbalogh/box-php-sdk#revoke-tokens)
+ * [Get access token Ttl](https://github.com/adammbalogh/box-php-sdk#get-access-token-ttl)
 * [Request](https://github.com/adammbalogh/box-php-sdk#request)
- * [Extended Request](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#extended-request)
+ * [Extended Request](https://github.com/adammbalogh/box-php-sdk#extended-request)
 * [Response](https://github.com/adammbalogh/box-php-sdk#response)
- * [Handle Response](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#handle-response)
+ * [Handle Response](https://github.com/adammbalogh/box-php-sdk#handle-response)
 * [Content Api](https://github.com/adammbalogh/box-php-sdk#content-api)
- * [Create Client](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#create-client)
- * [Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#commands)
-    * [User Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#user-commands)
-    * [Folder Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#folder-commands)
-    * [File Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#file-commands)
-    * [Search Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#search-commands)
+ * [Create Client](https://github.com/adammbalogh/box-php-sdk#create-client)
+ * [Commands](https://github.com/adammbalogh/box-php-sdk#commands)
+    * [User Commands](https://github.com/adammbalogh/box-php-sdk#user-commands)
+    * [Folder Commands](https://github.com/adammbalogh/box-php-sdk#folder-commands)
+    * [File Commands](https://github.com/adammbalogh/box-php-sdk#file-commands)
+    * [Search Commands](https://github.com/adammbalogh/box-php-sdk#search-commands)
 * [View Api](https://github.com/adammbalogh/box-php-sdk#view-api)
- * [Create Client](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#create-client-1)
- * [Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#commands-1)
-    * [Document Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#document-commands)
-    * [Session Commands](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#session-commands)
+ * [Create Client](https://github.com/adammbalogh/box-php-sdk#create-client-1)
+ * [Commands](https://github.com/adammbalogh/box-php-sdk#commands-1)
+    * [Document Commands](https://github.com/adammbalogh/box-php-sdk#document-commands)
+    * [Session Commands](https://github.com/adammbalogh/box-php-sdk#session-commands)
 * [Wrappers](https://github.com/adammbalogh/box-php-sdk#wrappers)
 
 # Support
@@ -798,7 +798,7 @@ if ($response instanceof SuccessResponse) {
 
 ## Search Path Wrapper
 
-It wraps the [Search Content Command](https://github.com/adammbalogh/box-php-sdk/blob/master/readme.md#search-content-command) to able to get an Entry object from a path string (like **/root/dir_1/dir_2**, or **/pictures/img.png**)
+It wraps the [Search Content Command](https://github.com/adammbalogh/box-php-sdk#search-content-command) to able to get an Entry object from a path string (like **/root/dir_1/dir_2**, or **/pictures/img.png**)
 
 ```php
 <?php
