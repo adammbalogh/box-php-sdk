@@ -818,3 +818,19 @@ if ($entry instanceof FolderEntry) {
     $entry->identity;
 }
 ```
+
+## Create Folders Wrapper
+
+It wraps the [Create Folder Command](https://github.com/adammbalogh/box-php-sdk#create-folder-command) to able to create folders implicitly.
+
+```php
+<?php
+use AdammBalogh\Box\Wrapper\CreateFolders;
+
+
+$wrapper = new CreateFolders($contentClient);
+
+$lastFolderId = $wrapper->create('/dir_1/dir_2/dir_3/dir_4');
+
+# $lastFolderId means dir_4's id
+```
