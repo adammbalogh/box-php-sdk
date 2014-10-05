@@ -571,6 +571,27 @@ if ($response instanceof SuccessResponse) {
 }
 ```
 
+#### Upload New File Version Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\UploadNewFileVersion('fileId', 'content');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
 ### Search Commands
 
 #### Search Content Command

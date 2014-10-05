@@ -5,6 +5,7 @@ use AdammBalogh\Box\Contract\ClientInterface;
 use AdammBalogh\Box\Client\Content\ApiClient;
 use AdammBalogh\Box\Client\Content\UploadClient;
 use AdammBalogh\Box\Command\Content\File\UploadFile;
+use AdammBalogh\Box\Command\Content\File\UploadNewFileVersion;
 
 class ContentClient implements ClientInterface
 {
@@ -38,7 +39,8 @@ class ContentClient implements ClientInterface
      */
     public function request(CommandInterface $command)
     {
-        if ($command instanceof UploadFile) {
+        if ($command instanceof UploadFile
+            || $command instanceof UploadNewFileVersion) {
             return $command->execute($this->uploadClient);
         }
 
