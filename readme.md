@@ -814,7 +814,7 @@ $entry = $wrapper->getEntry('/my-dir/example_dir');
 if ($entry instanceof FolderEntry) {
     $entry->identity; # folderId
     # here you can create your own command, because now you have the folder id!
-} elseif ($entry FileEntry) {
+} elseif ($entry instanceof FileEntry) {
     $entry->identity;
 }
 ```
