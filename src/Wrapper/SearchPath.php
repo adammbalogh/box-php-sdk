@@ -2,11 +2,12 @@
 
 use AdammBalogh\Box\ContentClient;
 use AdammBalogh\Box\Command\Content\Search\SearchContent;
+use AdammBalogh\Box\Exception\FileNotFoundException;
+use AdammBalogh\Box\Exception\FolderNotFoundException;
 use AdammBalogh\Box\Request\ExtendedRequest;
 use AdammBalogh\Box\Factory\ResponseFactory;
 use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
 use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
-use AdammBalogh\Box\Exception\NotFoundException;
 use AdammBalogh\Box\Wrapper\Response\Entry;
 use AdammBalogh\Box\Wrapper\Response\FileEntry;
 use AdammBalogh\Box\Wrapper\Response\FolderEntry;
@@ -33,7 +34,8 @@ class SearchPath
      *
      * @return FileEntry|FolderEntry
      *
-     * @throws NotFoundException
+     * @throws FileNotFoundException
+     * @throws FolderNotFoundException
      * @throws \Exception
      */
     public function getEntry($path)
@@ -83,7 +85,8 @@ class SearchPath
      *
      * @return FileEntry|FolderEntry
      *
-     * @throws NotFoundException
+     * @throws FileNotFoundException
+     * @throws FolderNotFoundException
      * @throws \Exception
      */
     protected function getEntryObject(SuccessResponse $response, $path)
@@ -109,7 +112,11 @@ class SearchPath
         }
 
         if (is_null($result->identity)) {
-            throw new NotFoundException($path);
+            if ($result instanceof FileEntry) {
+                throw new FileNotFoundException($path);
+            }
+
+            throw new FolderNotFoundException($path);
         }
 
         return $result;

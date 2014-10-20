@@ -8,7 +8,6 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/adammbalogh/box-sdk.svg?style=flat)](https://packagist.org/packages/adammbalogh/box-sdk)
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/5cde6ee7-5002-43b5-beb7-df12fddc8c15/small.png)](https://insight.sensiolabs.com/projects/5cde6ee7-5002-43b5-beb7-df12fddc8c15)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/adammbalogh/box-php-sdk?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Description
 
