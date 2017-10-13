@@ -302,6 +302,28 @@ if ($response instanceof SuccessResponse) {
 }
 ```
 
+
+#### Restore Folder Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\Folder\RestoreFolder('folderId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
 #### Get Folder Info Command
 
 ```php
@@ -440,6 +462,27 @@ use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
 use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
 
 $command = new Content\File\DeleteFile('fileId');
+$response = ResponseFactory::getResponse($contentClient, $command);
+
+if ($response instanceof SuccessResponse) {
+	# ...
+} elseif ($response instanceof ErrorResponse) {
+	# ...
+}
+```
+
+#### Restore File Command
+
+✔ Extended Request
+
+```php
+<?php
+use AdammBalogh\Box\Command\Content;
+use AdammBalogh\Box\Factory\ResponseFactory;
+use AdammBalogh\Box\GuzzleHttp\Message\SuccessResponse;
+use AdammBalogh\Box\GuzzleHttp\Message\ErrorResponse;
+
+$command = new Content\File\RestoreFile('fileId');
 $response = ResponseFactory::getResponse($contentClient, $command);
 
 if ($response instanceof SuccessResponse) {
